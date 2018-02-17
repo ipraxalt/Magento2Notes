@@ -1,0 +1,33 @@
+
+Ref: https://magento.stackexchange.com/questions/170709/how-to-change-product-image-on-hover
+
+File: Theme-Magento_Catalog\templates\product\list.phtml
+
+<!--Set hover image-->
+							    <a href="<?php echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+   
+									<span style="width:270px;" class="product-image-container">
+									<span style="padding-bottom: 137%;" class="product-image-wrapper">
+									<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+									$product = $objectManager->create('Magento\Catalog\Model\Product')->load($_product->getId());
+									$images = $product->getMediaGalleryImages();
+									$imgCNT = 1;
+									foreach ($images as $child) {
+									if ($imgCNT == 1) {
+									   $imgurl1 = $child->getUrl();
+									} elseif ($imgCNT == 2) {
+									   $imgurl2 = $child->getUrl();
+									} else {
+									   break;
+									}
+									$imgCNT++;
+									}
+									$imageUrl = $this->helper('Magento\Catalog\Helper\Image')->init($_product, 'product_page_image_large')->keepAspectRatio(true)->keepFrame(false)->resize(270, 404)->getUrl(); ?>
+									<img class="product-image-photo" src="<?php echo $imageUrl; ?>"
+									onmouseover="this.src='<?php echo ($imgurl2) ? $imgurl2 : $imageUrl ?>';"
+									onmouseout="this.src='<?php echo $imageUrl; ?>';"/>
+									<div class="bl_black"></div>
+									</span>
+									</span>
+									</a>
+							 <!--Set hover image-->
