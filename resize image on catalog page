@@ -1,0 +1,18 @@
+Magento2 resize image on catalog page list.phtml
+
+$images = $product->getMediaGalleryImages();
+									$imgCNT = 1;
+									foreach ($images as $child) {
+									if ($imgCNT == 1) {
+									   //$imgurl1 = $child->getUrl();
+									   $imgurl1 = $this->helper('Magento\Catalog\Helper\Image')->init($_product, 'category_page_grid_image')->setImageFile($child->getFile())->resize(758,1024)->getUrl();
+									} elseif ($imgCNT == 2) {
+									  // $imgurl2 = $child->getUrl();
+									   $imgurl2 = $this->helper('Magento\Catalog\Helper\Image')->init($_product, 'category_page_grid_image')->setImageFile($child->getFile())->resize(758,1024)->getUrl();
+									} else {
+									   break;
+									}
+									$imgCNT++;
+									}
+									
+									<img src="<?php echo $imgurl1; ?>" data-src="<?php echo $imgurl1; ?>" data-hover="<?php echo $imgurl2; ?>" alt="" class="product-image-photo" />
