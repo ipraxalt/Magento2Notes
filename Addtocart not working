@@ -1,0 +1,12 @@
+Addtocart not working:
+
+database table: core_config_data
+
+change in url localhost to 127.0.0.1 on given field:
+
+web/unsecure/base_url
+
+web/unsecure/base_url
+
+then run command : php bin/magento setup:upgrade
+------------------------------------------------------------------
