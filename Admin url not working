@@ -1,0 +1,8 @@
+Magento 2 admin not working:
+
+Error: admin url not working
+
+solution: 
+
+Open up app/etc/di.xml find the path “Magento\Framework\App\View\Asset\MaterializationStrategy\Symlink” 
+and replace to “Magento\Framework\App\View\Asset\MaterializationStrategy\Copy”
