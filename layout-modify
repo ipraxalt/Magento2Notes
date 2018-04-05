@@ -12,4 +12,12 @@ app/design/frontend/<Vendor>/<theme>/Magento_CatalogSearch/layout/catalogsearch_
 </page>
 
 ---**---*---*---*---*---
+## Include static resources (JavaScript, CSS, fonts)to all pages
 ---**---*---*---*---*---
+app\design\frontend\TemplateMonster\theme764\Magento_Theme\layout\default_head_blocks.xml
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+     <css src="css/retrocustom.css" />
+		 <css src="js/retrocustom.js" />		
+    </head>
+</page>
