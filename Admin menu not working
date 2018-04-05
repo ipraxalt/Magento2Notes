@@ -1,0 +1,9 @@
+ISSUE:    Magento2 admin menu not working:
+
+Go To :   app/etc/di.xml
+
+Magento\Framework\App\View\Asset\MaterializationStrategy\Symlink
+Replace it with (New line)
+Magento\Framework\App\View\Asset\MaterializationStrategy\copy
+
+php bin/magento setup:static-content:deploy
