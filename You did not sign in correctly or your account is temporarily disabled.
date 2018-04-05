@@ -1,0 +1,10 @@
+
+Error:  You did not sign in correctly or your account is temporarily disabled.
+solution1: run command
+php bin/magento admin:user:unlock admin
+solution2:
+In root \vendor\zendframework\zend-crypt\src\Utils.php 
+and change in line 32
+if (function_exists(‘hash_equals’)) { return hash_equals($expected, $actual); }
+To
+if (function_exists(‘hash_equals’)) { return true; }
