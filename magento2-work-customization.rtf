@@ -1,0 +1,464 @@
+{\rtf1\ansi\ansicpg1252\deff0{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue255;\red255\green0\blue0;\red0\green77\blue187;\red155\green0\blue211;\red0\green176\blue80;\red243\green164\blue71;\red247\green150\blue70;\red165\green181\blue146;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa200\sl276\slmult1\lang9\f0\fs22{\field{\*\fldinst{HYPERLINK "http://localhost/Magento21/custompage/"}}{\fldrslt{\ul\cf1 http://localhost/Magento21/custompage/}}}\f0\fs22\par
+{\field{\*\fldinst{HYPERLINK "http://localhost/Magento21/custompage/index/test"}}{\fldrslt{\ul\cf1 http://localhost/Magento21/custompage/index/test}}}\f0\fs22\par
+\par
+\par
+\cf2\b\fs28 Content deploy only custom theme:\fs24\par
+\cf3 #  php bin/magento setup:static-content:deploy en_US -a frontend -t TemplateMonster/theme764\par
+#  php bin/magento cache:clean\cf0\b0\fs22\par
+\cf4 -------------------------------------------------------------------------------------\cf0\par
+\fs28  \cf2\b Custom module Create\cf0\b0\fs22\par
+\cf3\b\fs24 Steps:\par
+1 Disable Magento cache                                                                                                                             2. Put Magento into a developer mode                                                                                               php bin/magento deploy:mode:set developer                                                                                                    \cf5 3. Create the following folders:\par
+\cf3 a.  app/code/Inchoo                                                                                                                          b. app/code/Inchoo/Helloworld                                                                                                               c. app/code/Inchoo/Helloworld/etc/module.xml                                                                                                           d.  app/code/Inchoo/Helloworld/registration.php\par
+4. Open your terminal and go to the Magento 2 root                                                                   php bin/magento setup:upgrade \par
+app/code/Inchoo/Helloworld/etc/frontend /routes.xml app/code/Inchoo/Helloworld/Controller/Index/Index.php app/code/Inchoo/Helloworld/Block/Helloworld.php app/code/Inchoo/Helloworld/view/frontend/layout/helloworld_index_index.xml app/code/Inchoo/Helloworld/view/frontend/templates/helloworld.phtml                                                        \par
+5. Open the URL in your browser                                                                                    /helloworld/index/index\par
+\cf4\fs22 follow\cf0 :  {\field{\*\fldinst{HYPERLINK "http://inchoo.net/magento-2/how-to-create-a-basic-module-in-magento-2/"}}{\fldrslt{\ul\cf1 http://inchoo.net/magento-2/how-to-create-a-basic-module-in-magento-2/}}}\b0\f0\fs22\par
+\cf6\b -----------------------$$$$------$$$$-----$$$$----$$$$-------------------------------------------\b0\par
+\cf0\par
+\cf2\b\fs28 Db import /Export  command\cf0\b0\fs22\par
+\cf4 import db\cf0\par
+cd  /home/laxmit/public_html/magento2\par
+mysql -u laxmit -p db_laxmitnew1968 < sample_data.sql.zip\par
+\cf4 export db\cf0\par
+cd  /home/laxmit/public_html/magento2\par
+mysqldump -u root -p db_laxmitnew1968 >  db_laxmitnew1968.sql\par
+\cf6\b -----------------------$$$$------$$$$-----$$$$----$$$$-------------------------------------------\b0\par
+\cf0\par
+\cf2\i\fs28 Magento2 issues\cf0\i0\fs22\par
+\par
+Admin menu link\rquote s are not working, please follow the below steps to fix the same\'85\par
+1. Remove everything, except .htaccess file from pub/static folder\par
+2. Open up app/etc/di.xml find the path \ldblquote Magento\\Framework\\App\\View\\Asset\\MaterializationStrategy\\Symlink\rdblquote  and replace to \ldblquote Magento\\Framework\\App\\View\\Asset\\MaterializationStrategy\\Copy\rdblquote                                                           Note:\~Remove entire files and folder under pub/static except .htaccess file.\par
+\par
+\cf2\i\fs28 Magento 2 Useful Commands List\cf0\i0\fs22\par
+Setup Upgrade Using Command Line\par
+php bin/magento setup:upgrade\par
+\par
+If you don\rquote t want to remove pub/static files while installing/updating database then use following command.\par
+php bin/magento setup:upgrade --keep-generated\par
+\par
+Cache Clean Using Command Line\par
+php bin/magento cache:clean\par
+\par
+Cache Flush Using Command Line\par
+php bin/magento cache:flush\par
+\par
+View cache status Using Command Line\par
+php bin/magento cache:status\par
+\par
+Enable Cache Using Command Line\par
+php bin/magento cache:enable [cache_type]\par
+\par
+Disable Cache Using Command Line\par
+php bin/magento cache:disable [cache_type]\par
+\par
+Static Content Deploy Using Command Line\par
+php bin/magento setup:static-content:deploy\par
+\par
+Static Content Deploy For Particular Language Using Command Line\par
+php bin/magento setup:static-content:deploy en_US\par
+\par
+Static Content Deploy For Magento Backend Theme Using Command Line (Working on 2.1.1 or later)\par
+php bin/magento setup:static-content:deploy --theme="Magento/backend"\par
+\par
+Static Content Deploy For Specific Themes Using Command Line (Working on 2.1.1 or later)\par
+php bin/magento setup:static-content:deploy --theme Magento/luma --theme Magento/second_theme\par
+\par
+Exclude Themes on Static Content Deploy and does not minify HTML files Using Command Line (Working on 2.1.1 or later)\par
+php bin/magento setup:static-content:deploy en_US --exclude-theme Magento/luma --no-html-minify\par
+\par
+\par
+Reindexing Using Command Line\par
+php bin/magento indexer:reindex\par
+\par
+View the list of indexers Using Command Line\par
+php bin/magento indexer:info\par
+\par
+View indexer status Using Command Line\par
+php bin/magento indexer:status\par
+\par
+Show the mode of all indexers Using Command Line\par
+php bin/magento indexer:show-mode\par
+\par
+Enable module Using Command Line\par
+\par
+php bin/magento module:enable Namespace_Module\par
+\par
+Disable module Using Command Line\par
+php bin/magento module:disable Namespace_Module\par
+\par
+Uninstall Module Using Command Line\par
+php bin/magento module:uninstall Namespace_Module\par
+\par
+Check Current Mode Using Command Line\par
+php bin/magento deploy:mode:show\par
+\par
+Change To Developer Mode Using Command Line\par
+php bin/magento deploy:mode:set developer\par
+\par
+Change To Production Mode Using Command Line\par
+php bin/magento deploy:mode:set production\par
+\par
+Run the single-tenant Compiler Using Command Line\par
+php bin/magento setup:di:compile\par
+\par
+\par
+Override Core Module:\par
+\par
+{\field{\*\fldinst{HYPERLINK "https://magento.stackexchange.com/questions/119795/override-module-contact-view-and-controller"}}{\fldrslt{\ul\cf1 https://magento.stackexchange.com/questions/119795/override-module-contact-view-and-controller}}}\f0\fs22\par
+\par
+\par
+\par
+\par
+Css file changes:\par
+create file inside theme  /app/design/frontend/Rk/Demo/web/css/source/_theme.less\par
+\par
+php bin/magento setup:upgrade\par
+php bin/magento cache:flush\par
+\par
+\par
+Custom theme php/phtml file changes:\par
+\par
+php bin/magento setup:static-content:deploy\par
+php bin/magento cache:flush\par
+\par
+\par
+\par
+CSV import url rewrite:\par
+{\field{\*\fldinst{HYPERLINK "https://github.com/Turiknox/magento2-urlrewriteimporter"}}{\fldrslt{\ul\cf1 https://github.com/Turiknox/magento2-urlrewriteimporter}}}\f0\fs22\par
+\par
+\par
+\par
+\par
+\par
+Add log in magento\par
+$writer = new \\Zend\\Log\\Writer\\Stream(BP . '/var/log/test.log');\par
+$logger = new \\Zend\\Log\\Logger();\par
+$logger->addWriter($writer);\par
+$logger->info('Your text message');\par
+\par
+\par
+command:\par
+ php bin/magento cache:clean\par
+php bin/magento cache:flush\par
+php bin/magento cache:disable\par
+php bin/magento indexer:reindex\par
+php bin/magento setup:upgrade\par
+php bin/magento setup:di:compile\par
+php bin/magento setup:static-content:deploy\par
+php bin/magento deploy:mode:set developer\par
+php bin/magento deploy:mode:set production\par
+php bin/magento deploy:mode:show\par
+\par
+php bin/magento module:status \par
+php bin/magento module:enable Namespace_Module\par
+php bin/magento module:disable Namespace_Module\par
+\par
+zip -r test.zip * -x 'test1/'\par
+\par
+chmod -R 777 pub/media app/etc var pub/static\par
+\par
+\par
+\par
+rm -rf  pub/static       [Keep the .htaccess backed up and copy it again]\par
+rm -rf  var/cache var/composer_home var/generation  var/page_cache var/view_preprocessed\par
+\par
+rm -rf  var/cache\par
+rm -rf  var/composer_home\par
+rm -rf  var/generation\par
+rm -rf  var/page_cache\par
+rm -rf  var/view_preprocessed\par
+php bin/magento setup:static-content:deploy\par
+\par
+\par
+\par
+\par
+\par
+\par
+CSS JS Can't we loaded\par
+\par
+You can disable option in your admin\par
+Stores>Configuration>Advanced>Developer>Sign Static Files (dev_static_sign)\par
+Or simply insert this row in your\~core_config_data\~table\par
+insert core_config_data (config_id, scope, scope_id, path, value) values (null, 'default', 0, 'dev/static/sign', 0);\par
+\par
+\par
+\par
+\cf2\b\fs28 Add custom css /js file:\b0\fs22\par
+\cf0\b\fs24 step1.   \par
+app/design/frontend/Rk/Demo/Magento_Theme/layoutdefault_head_blocks.xml\par
+<head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>\par
+<css src="css/custom.css" order="100"  />\par
+<link src="js/custom.js"/> \par
+</head>\par
+\par
+\cf2 Step2. \cf0\par
+\cf2 Add css:\cf0    /app/design/frontend/Rk/Demo/web/css/custom.css\par
+\par
+\cf2 Add js:\cf0         /app/design/frontend/Rk/Demo/web/js/custom.js\par
+require(["jquery"], function($)\{\par
+    alert("my name");\par
+\});\par
+\cf2\par
+Step3.\cf0\par
+# rm -rf  pub/static/\par
+#  Set pub/static/  permission 777\par
+#  php bin/magento setup:static-content:deploy\par
+#  php bin/magento cache:clean\cf3\par
+\b0\fs22 -------------------------------------------------------------------------------------\cf0\b\fs24\par
+\cf2\i\fs28 Add custom css /js file on Single Page product Layout:\cf0\i0\fs24\par
+\cf4 Step1\cf0\par
+ \cf3 File:      app/design/frontend/Rk/Demo/Magento_Catalog/layout/catalog_product_view.xml\par
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">                                                                                                                                                                     <head>                                                                                                                                                                                                    <link src="Magento_Catalog::js/customproduct.js"/>                                                                                                    </head>\tab                                                                                                                                                               </page>\par
+\cf4 Step2:  \cf3               app/design/frontend/Rk/Demo/Magento_Catalog/web/jscustomproduct.js\par
+require(["jquery"], function($)\{                                                                                                                                     alert("product3");                                                                                                                                                                            \});\par
+\cf4 Step3.  \cf3                                                                                                                                                            # rm -rf  pub/static/                                                                                                                                                                        #  Set pub/static/  permission 777                                                                                                                                        #  php bin/magento setup:static-content:deploy                                                                                                         #  php bin/magento cache:clean\par
+\b0\fs22 -------------------------------------------------------------------------------------\par
+\cf2\b\i\fs28 How to add css and js file in module\par
+\cf7\i0\fs24 Step1:\cf3          D:\\xampp\\htdocs\\retro\\app\\code\\Company\\Custompage\\view\\frontend\\layout\\custompage_index_index.xml                                                                                                                          \par
+ <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">                                                                                                             \cf7 <!-- for add css and js file on page -->                                                                      \cf4        \cf3 <head>                                                                                                                                          \cf8 <!-- for css file -->  \cf3                                                                                                                       <css src="Company_Custompage::css/custompage.css"/>                                                              \cf8 <!-- for js file --> \cf3                                                                                                                           <link src="Company_Custompage::js/custompage.js"/>                                                     </head>                                                                                                                                           \cf7   <!-- for add css and js file on page -->                                                               \cf3 <referenceContainer name="content">                                                                             <block class="Company\\Custompage\\Block\\Index" name="custompage_index" template="Company_Custompage::sayhello.phtml" />\tab\tab  </referenceContainer>                                                                                                           </page>\par
+\cf7 Step2  \cf3                                                                                                                                               D:\\xampp\\htdocs\\retro\\app\\code\\Company\\Custompage\\view\\frontend\\web\\js\\custompage.js      \par
+                                                                                                                                    require(["jquery"], function($)\{                                                                                                  alert("retro custompage");\par
+\});                                          \par
+                                                                                                                                                      D:\\xampp\\htdocs\\retro\\app\\code\\Company\\Custompage\\view\\frontend\\web\\css\\custompage.css\par
+\cf7 Step3:\cf3\par
+# rm -rf  pub/static/                                                                                                                                                                        #  Set pub/static/  permission 777                                                                                                                                        #  php bin/magento setup:static-content:deploy                                                                                                         #  php bin/magento cache:clean\par
+\b0\fs22 --------------------------------------------------------------------------------\par
+\par
+\cf2\b\i\fs28\par
+Controller /Model /Block Extend:\cf0\b0\i0\fs22\par
+Step1:  \cf4 Override Catalog Product ListProduct Block.\cf0\par
+Webkul/Hello/etc/di.xml\par
+<?xml version="1.0"?>                                                                                                                                               <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd"><preference for="Magento\\Catalog\\Block\\Product\\ListProduct" type="Webkul\\Hello\\Block\\Rewrite\\Product\\ListProduct" />                                                                                                                    </config>                                                                                                                     \par
+Webkul/Hello/Block/Rewrite/Product /ListProduct.php \par
+<?php                                                                                                                                                                                                /**                                                                                                                                                                                                      * Hello Rewrite Product ListProduct Block\par
+* @category  Webkul\par
+* @package  Webkul_Hello                                                                                                                                     * @author Webkul Software Private Limited                                                                                                                           */\par
+namespace Webkul\\Hello\\Block\\Rewrite\\Product;\par
+class ListProduct extends \\Magento\\Catalog\\Block\\Product\\ListProduct   \{\par
+     public function _getProductCollection()   \par
+   \{                                                                                                                // Do your stuff here\par
+      \}                                                                                                                                                                                                 \}\par
+---------------------------------------------------------------------------------------------------------------------\par
+\par
+\par
+Step2: Overriding Model\par
+\par
+di.xml\par
+<?xml version="1.0"?>\par
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">\par
+\~<preference for="Magento\\Catalog\\Model\\Product" type="Webkul\\Hello\\Model\\Rewrite\\Catalog\\Product" />\par
+</config>\par
+\par
+\par
+Webkul/Hello/Model/Rewrite/Catalog/Product.php \par
+\par
+<?php\par
+    /**\par
+     * Hello Catalog Product Rewrite Model\par
+     *\par
+     * @category    Webkul\par
+     * @package     Webkul_Hello\par
+     * @author      Webkul Software Private Limited\par
+     *\par
+     */\par
+    namespace Webkul\\Hello\\Model\\Rewrite\\Catalog;\par
+ \par
+    class Product extends \\Magento\\Catalog\\Model\\Product\par
+    \{\par
+        public function isSalable()\par
+        \{\par
+            // Do your stuff here\par
+            return parent::isSalable();\par
+        \}\par
+ \par
+\par
+\par
+\par
+\par
+\par
+\par
+Step3:   Override Product View Controller.\~\par
+\par
+di.xml\par
+\par
+<?xml version="1.0"?>\par
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">\par
+\~\~\~\~<preference for="Magento\\Catalog\\Controller\\Product\\View" type="Webkul\\Hello\\Controller\\Rewrite\\Product\\View" />\par
+</config>\par
+\par
+\par
+Webkul/Hello/Controller/Rewrite/Product/ View.php\par
+<?php\par
+    /**\par
+     * Hello Rewrite Product View Controller\par
+     *\par
+     * @category    Webkul\par
+     * @package     Webkul_Hello\par
+     * @author      Webkul Software Private Limited\par
+     *\par
+     */\par
+    namespace Webkul\\Hello\\Controller\\Rewrite\\Product;\par
+ \par
+    class View extends \\Magento\\Catalog\\Controller\\Product\\View\par
+    \{\par
+        /**\par
+         * @return \\Magento\\Framework\\Controller\\Result\\Redirect|\\Magento\\Framework\\View\\Result\\Page\par
+         */\par
+        public function execute()\par
+        \{\par
+            // Do your stuff here\par
+            return parent::execute();\par
+        \}\par
+    \}\par
+\par
+\par
+helper function call in block.phtml\par
+\par
+\par
+Helper:  /app/code/Oss/TestPage/Helper/Data.php\par
+<?php\par
+        namespace Oss\\TestPage\\Helper;\par
+\par
+        use Magento\\Framework\\App\\Helper\\AbstractHelper;\par
+\par
+       class Data extends AbstractHelper \{\par
+\tab\par
+       public function ossTestHelper()    \{\par
+          return 'test block/helper call in phtml##';\par
+       \}\par
+ \}\par
+\par
+Block: app/code/Oss/TestPage/Block/Index/Index.php\par
+\par
+<?php\par
+ \par
+namespace Oss\\TestPage\\Block\\Index;\par
+\par
+class Index extends \\Magento\\Framework\\View\\Element\\Template \{\par
+\par
+    protected $myModuleHelper;\par
+ \par
+    public function __construct(\par
+        \\Magento\\Framework\\View\\Element\\Template\\Context $context,\par
+        \\Oss\\TestPage\\Helper\\Data $myModuleHelper,\par
+        array $data = []\par
+    ) \{\par
+        parent::__construct($context, $data);\par
+        $this->_mymoduleHelper = $myModuleHelper;\par
+    \}\par
+ \par
+    public function ossTestBlock() \{\par
+        return $this->_mymoduleHelper->ossTestHelper();\par
+    \}\par
+\par
+\}\par
+\par
+View: Call block in view file\par
+\par
+echo $block->ossTestBlock();\par
+\par
+\par
+Event / Observer magento\par
+\par
+(Set default Product price to cart item quote)\par
+\par
+Step1. Create custom  Module\par
+\par
+Ste2. app/code/Oss/Cartevent/Observer/Customprice.php\par
+\par
+<?php\par
+namespace Oss\\Cartevent\\Observer;\par
+class Customprice implements \\Magento\\Framework\\Event\\ObserverInterface\{\par
+  public function execute(\\Magento\\Framework\\Event\\Observer $observer)  \{   \par
+    \par
+    /*Set default Product price to cart item quote*/\tab\par
+\tab    $item = $observer->getEvent()->getData('quote_item');         \par
+\tab\tab $item = ( $item->getParentItem() ? $item->getParentItem() : $item );\par
+\tab\tab $price = 100; \par
+\tab\tab $item->setCustomPrice($price);\par
+\tab\tab $item->setOriginalCustomPrice($price);\par
+\tab\tab $item->getProduct()->setIsSuperMode(true); \par
+\tab\par
+  \}\par
+  \par
+\}\par
+\par
+\par
+Step3.  app/code/Oss/Cartevent/etc/Events.xml\par
+\par
+<?xml version="1.0"?>\par
+  <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">\par
+<event name="checkout_cart_product_add_after">\par
+    <observer name="oss_cartevent_observer_customprice" instance="Oss\\Cartevent\\Observer\\Customprice" />\par
+   </event>\par
+</config>\par
+\par
+-------------------------------------------------------------\par
+\par
+Overwrite template Contact form:\par
+\par
+App/design/frontend/Rk/Demo/Magento_Contact/templates/form.phtml\par
+\par
+\par
+----------------\par
+Magento css:\par
+\par
+By default, media queries are outputting styles in two different files:\par
+1. styles-m.less\~\endash  which generates basic and mobile-specific styles\par
+2. styles-l.less\~\endash  generates desktop-specific styles (for 768px width screen and higher)\par
+This means that, when the website is opened on a mobile device, it will load only styles compiled from the styles-m.less file. Extra styles from the second file (styles-l.less) are compiling and loading only if the screen width is 768px or higher.\par
+\par
+\par
+<move element="catalog.topnav" destination="header-wrapper" after="logo"/>\par
+  <move element="top.search" destination="header-wrapper"  after="catalog.topnav"/>\par
+\par
+Magento2 Rest API:\par
+\par
+System-> intrgation ->Addnw intregation key-> get Access Token \par
+\par
+Install Postman:\par
+Set Header\par
+1. Authorization :  bearer can2bstkkf7v5tt5rasubphjtsjtfsu9\par
+2. Content-Type  : application/json\par
+\par
+\par
+Product list (Get):\par
+{\field{\*\fldinst{HYPERLINK "http://172.16.10.16/~laxmit/m2/index.php/rest/V1/products?searchCriteria"}}{\fldrslt{\ul\cf1 http://172.16.10.16/~laxmit/m2/index.php/rest/V1/products?searchCriteria}}}\f0\fs22  \par
+\par
+\par
+Create product (POST)\par
+\par
+{\field{\*\fldinst{HYPERLINK "http://172.16.10.16/~laxmit/m2/index.php/rest/V1/products"}}{\fldrslt{\ul\cf1 http://172.16.10.16/~laxmit/m2/index.php/rest/V1/products}}}\f0\fs22  \par
+\par
+Authorization - bearer can2bstkkf7v5tt5rasubphjtsjtfsu9 \par
+Content-Type : application/json \par
+\par
+\par
+Raw: \par
+ \{\par
+ \tab "product": \{\par
+ \tab\tab "sku": "ABC_1234567",\par
+ \tab\tab "name": "My Product Title Listing",\par
+ \tab\tab "attributeSetId": 10,\par
+ \tab\tab "price": 425.99,\par
+ \tab\tab "status": 1,\par
+ \tab\tab "visibility": 4,\par
+ \tab\tab "typeId": "simple",\par
+ \tab\tab "createdAt": "2016-05-26 14:00:00",\par
+ \tab\tab "updatedAt": "2016-05-26 14:00:00",\par
+ \tab\tab "weight": 15\par
+ \tab\},\par
+ \tab "saveOptions": true\par
+ \tab  \}\par
+--\par
+{\field{\*\fldinst{HYPERLINK "https://mage2.pro/t/topic/1297"}}{\fldrslt{\ul\cf1 https://mage2.pro/t/topic/1297}}}\f0\fs22\par
+\par
+update cart {\field{\*\fldinst{HYPERLINK "https://www.thirdandgrove.com/creating-custom-rest-api-magento2"}}{\fldrslt{\ul\cf1 https://www.thirdandgrove.com/creating-custom-rest-api-magento2}}}\f0\fs22\par
+\par
+{\field{\*\fldinst{HYPERLINK "https://www.demacmedia.com/extending-magento-2-rest-web-api/"}}{\fldrslt{\ul\cf1 https://www.demacmedia.com/extending-magento-2-rest-web-api/}}}\f0\fs22\par
+}
+ 
